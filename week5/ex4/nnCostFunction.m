@@ -60,6 +60,13 @@ for i = 1:m
   J+=k_sum;
 endfor
 J=(1/m)*J;
+% Add regularization
+T1_squared = Theta1(:,2:end).*Theta1(:,2:end);
+T2_squared = Theta2(:,2:end).*Theta2(:,2:end);
+r = (lambda/(2*m))*(sum(T1_squared(:))+sum(T2_squared(:)));
+J=J+r;
+
+
   
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
